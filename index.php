@@ -13,7 +13,7 @@ data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
 
 //PREPARANDO  COMANDO  SQL
 //stmt = statment
-$stmt = pdo->prepare($sql);
+$stmt = $pdo->prepare($sql);
 
 //EXECUTAR  O  COMANDO
 $stmt->execute();
