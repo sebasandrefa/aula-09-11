@@ -1,232 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GruliusBR</title>
-    <link rel="stylesheet" href="css/05-portfolio.css">
+    
+    <title>Meu Portfolio</title>
+
+    @vite(['resources/css/index.css'])
+
 </head>
-<body>
-
-    <!--COMENTARIO-->
+<body class="pagina-inicio">
+    <!-- =====================
+         MENU DE NAVEGAÇÃO
+    ====================== -->
     <header>
-    <div class="logo">
-        <h2>José <span>Oropesa</span></h2>
-    </div>
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#contato">Contato</a>
-        
-    </nav>
+        <nav class="navbar">
+            <h2 class="logo">Meu Portfólio</h2>
+
+            <ul class="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <!--CONTEUDO PRINCIPAL-->
     <main>
-        <!-- SECAO DE INICIO -->
-         <section id="inicio" class="inicio">
-            <div class="inicio-conteudo">
-                <p class="apresentacao"> Olá, eu sou </p>
-                <h1> JOSÉ JULIO </h1>
-                <h2> DESENVOLVEDOR DE SOFTWARE </h2>
-                <p class="descricao">
-                    DESENVOLVEDOR CUBANO MORANDO NO BRASIL
-                </p>
-                <div class="botoes">
-                    <a href="#projetos" class="botao">Ver Projetos</a>
-                    <a href="#contato" class="botao botao-secundario">Entrar Em Contato</a>
-                </div>
-            </div>
-         </section>
+        <section id="inicio" class="inicio">
+            
+        <div class="inicio-conteudo">
 
-         <!-- SOBRE -->
-          <section id="sobre" class="sobre">
-            <div class="titulo-secao">
-                <p>Conheça Um Pouco</p>
-                <h2>Sobre mim</h2>
-            </div>
-            <div class="sobre-conteudo">
-                <div class="sobre-texto">
-                    <p>
-                        O cara que gosta de ideias diferentes para seus projetos.
-                    </p>
-                    <p>
-                        Meu sonho atual em programaçao é desenvolver um calendario fixo internacional.
-                    </p>
-                </div>
-                <div class="habilidades">
-                    <div class="habilidade">
-                        <h3>HTML</h3>
-                        <p>Estruturaçao de paginas web.</p>
-                    </div>
-                    <div class="habilidade">
-                        <h3>CSS</h3>
-                        <p>Estilizaçao e criaçao de interface.</p>
-                    </div>
-                    <!--div class="habilidade">
-                        <h3>PHP</h3>
-                        <p>Desenvolvimento de aplicaçoes web.</p>
-                    </div-->
-                </div>
-            </div>
-          </section>
+            <p class="saudacao">Olá! Eu sou </p>
 
-          <section id="projetos" class="projetos-secao">
-            <div class="titulo-secao">
-                <p>Alguns trabalhos</p>
-                <h2>Meus Projetos</h2>
-            </div>
-            <div class="projetos">
-                <div class="card">
-                    <div class="numero-projeto">
-                        01
-                    </div>
-                    <h3>atividade 01</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <!--span>PHP</span-->
-                    </div>
-                    <a href="/atividades/01.html">Ver Projeto</a>
+            <h1>Sebastián Andrade</h1>
+
+            <h2>Desenvolvedor em formação</h2>
+
+            <p>
+                Sou desenvolvedor de sistemas com foco em criar 
+                soluções práticas, eficientes e com boa experiência 
+                de uso, foco em criação de sites.
+            </p>
+            <a href="#projetos" class="botao">
+                Ver meus projetos
+            </a>
+        </div>
+    </section>
+    <section id="sobre" class="secao">
+        <h2 class="titulo-secao"> Sobre mim </h2>
+        <div class="sobre-conteudo">
+            <h3>Quem sou eu?</h3>
+            <p>
+                Meu nome é Sebastián Andrade e sou aluno
+                de Analise em desenvolvimento de Sistemas.
+            </p>
+
+            <p>
+                Atualmente estou ainda tendo aulas e não conclui o curso.
+                Este portfólio reúne alguns dos projetos que desenvolvi durante
+                o curso.
+            </p>
+
+            <p>
+
+                Meu objetivo é continuar aprendendo e me tornar um desenvolvedor de sistemas
+                completo. fazendo sites, programando e dando soluções aos problemas do dia a dia.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <section id="habilidades" class="secao secao-destaque">
+            <h2 class="titulo-secao">Habilidades</h2>
+            <p class="subtitulo-secao">
+                Algumas tecnologias que estou estudando:
+            </p>
+            <div class="lista-habilidades">
+                <div class="habilidade">
+                    HTML
                 </div>
-                <!-- PROJETO 2 -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        02
-                    </div>
-                    <h3>IDADE-GET.PHP</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <!--span>PHP</span-->
-                    </div>
-                    <a href="/atividades/05-idade-get.php">Ver Projeto</a>
+                <div class="habilidade">
+                    CSS
                 </div>
-                <!-- PROJETO 3 -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        03
-                    </div>
-                    <h3>REGISTER</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <!--span>PHP</span-->
-                    </div>
-                    <a href="/atividades/04-idade.php">Ver Projeto</a>
+                <div class="habilidade">
+                    PHP
                 </div>
-                <!-- PROJETO 4 -->
-                 <div class="card">
-                    <div class="numero-projeto">
-                        04
-                    </div>
-                    <h3>Cadastro de Produtos PHP-JSON</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/atividades/03-cadastro-produtos.php">Ver Projeto</a>
+                <div class="habilidade">
+                    PHYTON
                 </div>
-                <!-- PROJETO 5 -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        05
-                    </div>
-                    <h3>Persistencia de Dados</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/atividades/02-dados-json.php">Ver Projeto</a>
+                <div class="habilidade">
+                    NODE.JS
                 </div>
-                <!-- PROJETO 6 -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        06
-                    </div>
-                    <h3>Funçoes no PHP</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/atividades/09-funcoes2.php">Ver Projeto</a>
+                <div class="habilidade">
+                    REACT
                 </div>
-                <!-- PROJETO 7 -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        07
-                    </div>
-                    <h3>HelpDesk</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/atividades/helpdesk.php">Ver Projeto</a>
-                </div>
-                <!-- PROJETO * -->
-                <div class="card">
-                    <div class="numero-projeto">
-                        LP
-                    </div>
-                    <h3>ORÇAMENTO</h3>
-                    <p>
-                        Descriçao do sistema de Cadastro
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="orcamento.php">Ver Projeto</a>
-                </div>
-                <!--fin-->
             </div>
         </section>
-        <section id="contato" class="contato">
-            <div class="titulo-secao">
-                <p>Vamos conversar</p>
-                <h2>Contato</h2>
+        <section id="projetos" class="secao">
+            <h2 class="titulo-secao">Meus Projetos</h2>
+            <p class="subtitulo-secao">
+                Alguns projetos que desenvolvi durante o curso:
+            </p>
+            <div class="projetos-container">
+            <div class="projeto-card">
+                <div class="projeto-numero">
+                    01
+                </div>
+                    <h3>Verificação de idade</h3>
+                    <p>
+                        Sistema desenvolvido para praticar
+                        formulários e manipulação de dados.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="{{ route('Idade') }}" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>
+                <div class="projeto-card">
+                    <div class="projeto-numero">
+                        02
+                    </div>
+                    <h3>Cadastro de notas</h3>
+                    <p>
+                        Sistema desenvolvido para praticar
+                        formulários e manipulação de dados.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="/?rota=notas" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>
+                <div class="projeto-card">
+                    <div class="projeto-numero">
+                        03
+                    </div>
+                    <h3>Cadastro de jogos</h3>
+                    <p>
+                        Sistema desenvolvido para praticar
+                        formulários e manipulação de dados.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="/?rota=jogos" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>
+                <div class="projeto-card">
+                    <div class="projeto-numero">
+                        04
+                    </div>
+                    <h3>Login Básico</h3>
+                    <p>
+                        Login simples desenvolvido para praticar
+                        formulários e manipulação de dados.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="/?rota=login-basico" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>  
+                <div class="projeto-card">
+                    <div class="projeto-numero">
+                        05
+                    </div>
+                    <h3>Sistema Helpdesk para Gerenciar Chamados</h3>
+                    <p>
+                        Sistema para registrar chamados, acompanhar o status
+                        e organizar atendimentos de suporte.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="/?rota=helpdesk" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>
+                 <div class="projeto-card">
+                    <div class="projeto-numero">
+                        06
+                    </div>
+                    <h3>Sistema para Gerenciar Cadastro de Máquinas</h3>
+                    <p>
+                        Sistema em PHP que permite cadastrar máquinas industriais, registrar a quantidade produzida e visualizar
+                        os dados dinamicamente, aplicando conceitos de Progamação Orientada a Objetos, como herença, abstração e polimorfismo.
+                    </p>
+                    <div class="tecnologias">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>PHP</span>
+                    </div>
+                    <a href="/?rota=poo2" class="link-projeto">
+                        Ver projeto →
+                    </a>
+                </div>
             </div>
-            <div class="contato-links">
-                <a href="mailto:guapser2k7@gmail.com">Email</a>
-                <a href="https://github.com/GRULIUSBR">GitHub</a>
-                <a href="https://linkedin.com/in/joseoropesabajuelo">LinkedIn</a>
+        </section>
+        <section id="contato" class="secao secao-destaque">
+            <h2 class="titulo-secao">Contato</h2>
+            <p class="subtitulo-secao">
+                Quer entrar em contato comigo?
+            </p>
+            <div class="contato-container">
+                <div class="contato-item">
+                    <h3>Email:</h3>
+                    <p>sebasandrefa@gmail.com</p>
+                </div>
+                <div class="contato-item">
+                    <h3>Github:</h3>
+                    <p>github.com/sebasandrefa</p>
+                </div>
             </div>
         </section>
     </main>
     <footer>
         <p>
-            DESENVOLVIDO POR <a href="https://jose755.devlook.xyz">JOSE OROPESA</a>
-        </p>
-        <p>
-            HTML + CSS
+            Desenvolvido por <a href="https://sebastian755.devlook.xyz"> 
+                Sebastián Andrade</a> . 2026
         </p>
     </footer>
+
 </body>
+
 </html>
