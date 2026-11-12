@@ -1,5 +1,7 @@
 <?php
-require_once "08-funcoes.php";
+require_once __DIR__ . "/funcoes.php";
+$media = "";
+$situacao = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nota1 = $_POST["nota1"];
     $nota2 = $_POST["nota2"];
@@ -17,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUNÇOES NO FRONT</title>
+    <link rel="stylesheet" href="../css/atividades/funcoes2.css">
 </head>
 
 <header>

@@ -2,9 +2,9 @@
 $situacao = "";
 $nomeEmpresa = "SENAI";
 
-$conteudoJson = __DIR__ ; "dados/teste.json";
-$JsonAtualizado = file_get_contents($conteudoJson);
-$chamados = json_decode($conteudoJson, true);
+$arquivoChamados = __DIR__ . "/../dados/chamados.json";
+$conteudoJson = file_get_contents($arquivoChamados);
+$chamados = json_decode($conteudoJson, true) ?: [];
 
 
 function create(){

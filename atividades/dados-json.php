@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
 
     //serve pra ler/abrir arquivo json
-    $conteudoJson = file_get_contents(__DIR__ . "../dados/intro.json");
+    $conteudoJson = file_get_contents(__DIR__ . "/../dados/intro.json");
 
     // serve para converter json para array php
     //o (true) serve para converter o json em array associativo para php ler
@@ -63,13 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     //salvar no arquivo json
-    file_put_contents(__DIR__ . "../dados/intro.json", $jsonAtualizado);
+    file_put_contents(__DIR__ . "/../dados/intro.json", $jsonAtualizado);
 }
 
 //ler dados para exibir
 
 //lee el archuivo JSON
-$conteudoJson = file_get_contents(__DIR__ . "../dados/intro.json");
+$conteudoJson = file_get_contents(__DIR__ . "/../dados/intro.json");
 
 //converte o json para array php
 $alunos = json_decode($conteudoJson, true);
@@ -84,7 +84,7 @@ $alunos = json_decode($conteudoJson, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dados-json</title>
-    <link rel="stylesheet" href="../css/02-dados-json.css">
+    <link rel="stylesheet" href="../css/atividades/dados-json.css">
 </head>
 <header>
     <div class="logo">

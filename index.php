@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -100,117 +100,58 @@
         <section id="projetos" class="secao">
             <h2 class="titulo-secao">Meus Projetos</h2>
             <p class="subtitulo-secao">
-                Alguns projetos que desenvolvi durante o curso:
+                Projetos e atividades desenvolvidos durante o curso:
             </p>
             <div class="projetos-container">
-            <div class="projeto-card">
-                <div class="projeto-numero">
-                    01
-                </div>
-                    <h3>Verificação de idade</h3>
-                    <p>
-                        Sistema desenvolvido para praticar
-                        formulários e manipulação de dados.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="{{ route('Idade') }}" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-numero">
-                        02
-                    </div>
-                    <h3>Cadastro de notas</h3>
-                    <p>
-                        Sistema desenvolvido para praticar
-                        formulários e manipulação de dados.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/?rota=notas" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-numero">
-                        03
-                    </div>
-                    <h3>Cadastro de jogos</h3>
-                    <p>
-                        Sistema desenvolvido para praticar
-                        formulários e manipulação de dados.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/?rota=jogos" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>
-                <div class="projeto-card">
-                    <div class="projeto-numero">
-                        04
-                    </div>
-                    <h3>Login Básico</h3>
-                    <p>
-                        Login simples desenvolvido para praticar
-                        formulários e manipulação de dados.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/?rota=login-basico" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>  
-                <div class="projeto-card">
-                    <div class="projeto-numero">
-                        05
-                    </div>
-                    <h3>Sistema Helpdesk para Gerenciar Chamados</h3>
-                    <p>
-                        Sistema para registrar chamados, acompanhar o status
-                        e organizar atendimentos de suporte.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/?rota=helpdesk" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>
-                 <div class="projeto-card">
-                    <div class="projeto-numero">
-                        06
-                    </div>
-                    <h3>Sistema para Gerenciar Cadastro de Máquinas</h3>
-                    <p>
-                        Sistema em PHP que permite cadastrar máquinas industriais, registrar a quantidade produzida e visualizar
-                        os dados dinamicamente, aplicando conceitos de Progamação Orientada a Objetos, como herença, abstração e polimorfismo.
-                    </p>
-                    <div class="tecnologias">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>PHP</span>
-                    </div>
-                    <a href="/?rota=poo2" class="link-projeto">
-                        Ver projeto →
-                    </a>
-                </div>
+                <article class="projeto-card">
+                    <div class="projeto-numero">01</div>
+                    <h3>Cadastro de notas com JSON</h3>
+                    <p>Formulário para cadastrar alunos e organizar notas de Português, Matemática e História em JSON.</p>
+                    <div class="tecnologias"><span>PHP</span><span>JSON</span><span>HTML</span><span>CSS</span></div>
+                    <a href="atividades/dados-json.php" class="link-projeto">Ver projeto →</a>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">02</div>
+                    <h3>Funções e cálculo de média</h3>
+                    <p>Exercício de funções PHP com saudação, operações matemáticas e cálculo de situação escolar.</p>
+                    <div class="tecnologias"><span>PHP</span><span>Funções</span><span>HTML</span><span>CSS</span></div>
+                    <a href="atividades/funcoes2.php" class="link-projeto">Ver projeto →</a>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">03</div>
+                    <h3>Helpdesk de chamados</h3>
+                    <p>Interface para registrar chamados de suporte com setor, equipamento, descrição e prioridade.</p>
+                    <div class="tecnologias"><span>PHP</span><span>JSON</span><span>HTML</span><span>CSS</span></div>
+                    <a href="atividades/helpdesk.php" class="link-projeto">Ver projeto →</a>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">04</div>
+                    <h3>Funções PHP</h3>
+                    <p>Biblioteca de funções para saudações, soma, média e verificação de aprovação.</p>
+                    <div class="tecnologias"><span>PHP</span><span>Lógica</span></div>
+                    <span class="link-projeto projeto-indisponivel">Arquivo de apoio</span>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">05</div>
+                    <h3>Funções do Helpdesk</h3>
+                    <p>Arquivo de apoio separado para organizar a lógica de gerenciamento de chamados.</p>
+                    <div class="tecnologias"><span>PHP</span><span>JSON</span></div>
+                    <span class="link-projeto projeto-indisponivel">Arquivo de apoio</span>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">06</div>
+                    <h3>Atualização de dados JSON</h3>
+                    <p>Exercício de leitura, alteração e gravação de dados em um arquivo JSON.</p>
+                    <div class="tecnologias"><span>PHP</span><span>JSON</span></div>
+                    <span class="link-projeto projeto-indisponivel">Script de demonstração</span>
+                </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">07</div>
+                    <h3>Remoção de dados JSON</h3>
+                    <p>Exercício de filtragem de registros e reorganização de uma lista JSON.</p>
+                    <div class="tecnologias"><span>PHP</span><span>JSON</span></div>
+                    <span class="link-projeto projeto-indisponivel">Script de demonstração</span>
+                </article>
             </div>
         </section>
         <section id="contato" class="secao secao-destaque">

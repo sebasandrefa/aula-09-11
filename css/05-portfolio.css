@@ -584,6 +584,11 @@ section[id]:target .inicio-conteudo h1 {
     color: var(--cor-primaria-escura);
 }
 
+.projeto-indisponivel {
+    color: var(--cor-texto-fraco);
+    cursor: default;
+}
+
 /* =====================
    LOGIN
 ====================== */
