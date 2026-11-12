@@ -1,0 +1,74 @@
+﻿@import url("atividades-base.css");
+
+body > h1,
+body > h2,
+body > p {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 20px;
+}
+
+body > h1 {
+    margin-top: 44px;
+    font-size: clamp(26px, 4vw, 38px);
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 30px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-lg);
+    background: #fff;
+    box-shadow: var(--sombra);
+}
+
+form h2,
+form button {
+    grid-column: 1 / -1;
+}
+
+label {
+    color: var(--cor-texto-suave);
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-sm);
+    font: inherit;
+}
+
+input:focus {
+    outline: 3px solid var(--cor-primaria-borda);
+    border-color: var(--cor-primaria);
+}
+
+button {
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--cor-primaria);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    form {
+        grid-template-columns: 1fr;
+        margin: 0 16px 32px;
+        padding: 20px;
+    }
+
+    form h2,
+    form button {
+        grid-column: auto;
+    }
+}

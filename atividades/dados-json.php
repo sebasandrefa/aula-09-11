@@ -84,7 +84,7 @@ $alunos = json_decode($conteudoJson, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dados-json</title>
-    <link rel="stylesheet" href="../css/atividades/dados-json.css">
+    <link rel="stylesheet" href="../css/dados-json.css">
 </head>
 <header>
     <div class="logo">

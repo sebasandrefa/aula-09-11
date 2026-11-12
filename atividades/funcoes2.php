@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUNÇOES NO FRONT</title>
-    <link rel="stylesheet" href="../css/atividades/funcoes2.css">
+    <link rel="stylesheet" href="../css/funcoes2.css">
 </head>
 
 <header>
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <h1> <?= $nomeEscola ?> </h1>
     <h2> <?= saudacao() ?> </h2>
-    <p> <?= cumprimentar("Jose") ?> </p>
+    <p> <?= cumprimentar("Sebastian") ?> </p>
     <p> RESULTADO DA SOMA:
         <?= somar(10, 5) ?>
     </p>

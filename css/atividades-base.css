@@ -1,0 +1,45 @@
+@import url("05-portfolio.css");
+
+body {
+    min-height: 100vh;
+    background: var(--cor-fundo);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 14px max(20px, calc((100% - 1100px) / 2));
+    background: var(--cor-escura);
+}
+
+header .logo h2 {
+    color: #fff;
+    font-size: 20px;
+}
+
+header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+header nav a {
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: #cbd5e1;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    background: rgba(148, 163, 184, .14);
+    color: #fff;
+}
+
+@media (max-width: 640px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

@@ -1,7 +1,18 @@
 <?php
 //db1.php
-require_once "conexao.php";
-//1-criar tabela
+require_once __DIR__ . "/../conexao.php";
+//1-criar tabela e executar operações
+$erroBanco = null;
+$produtoEditar = null;
+$produtos = [];
+$pdoDisponivel = isset($pdo) && $pdo instanceof PDO;
+if (!$pdoDisponivel) {
+    http_response_code(503);
+    $erroBanco = "Não foi possível conectar ao banco de dados. Confira a configuração da conexão.";
+}
+
+if ($pdoDisponivel) {
+try {
 $sql = "CREATE TABLE IF NOT EXISTS produtos (
 id INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100) NOT NULL,
@@ -16,10 +27,12 @@ if (isset($_POST["cadastrar"])) {
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
 
-    $sql = "INSERT INTO produtos (':nome', :preco, :quantidade)";
+    $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES (:nome, :preco, :quantidade)";
 
     $stmt = $pdo->prepare($sql);
-
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":quantidade", $quantidade);
     $stmt->execute();
 }
 //3-atualizar produto
@@ -29,9 +42,13 @@ if (isset($_POST["atualizar"])) {
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
 
-    $sql = "UPDATE produtos SET nome = '$nome', preco = $preco, quantidade = $quantidade WHERE id = $id";
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade WHERE id = :id";
 
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":quantidade", $quantidade);
+    $stmt->bindParam(":id", $id);
     $stmt->execute();
 }
 
@@ -39,8 +56,9 @@ if (isset($_POST["atualizar"])) {
 if (isset($_POST["excluir"])) {
     $id = $_POST["id"];
 
-    $sql = "DELETE FROM produtos WHERE id = $id";
+    $sql = "DELETE FROM produtos WHERE id = :id";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id);
     $stmt->execute();
 }
 
@@ -49,8 +67,9 @@ $produtoEditar = null;
 
 if (isset($_GET["editar"])) {
     $id = $_GET["editar"];
-    $sql = "SELECT * FROM produtos WHERE id = $id";
+    $sql = "SELECT * FROM produtos WHERE id = :id";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id);
     $stmt->execute();
     $produtoEditar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -60,19 +79,30 @@ if (isset($_GET["editar"])) {
 $sql = "SELECT * FROM produtos ORDER BY id ASC";
 $stmt = $pdo->query($sql);
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Throwable $e) {
+    http_response_code(503);
+    $erroBanco = "Não foi possível carregar o cadastro. Confira se o banco possui a tabela e as permissões necessárias.";
+    $produtoEditar = null;
+    $produtos = [];
+}
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro de produtos</title>
+    <link rel="stylesheet" href="../css/db1.css">
 </head>
 
 <body>
     <h1>Sistema de Cadastro de produtos</h1>
+    <?php if ($erroBanco): ?>
+        <p role="alert"><?= htmlspecialchars($erroBanco, ENT_QUOTES, "UTF-8") ?></p>
+    <?php endif; ?>
     <h2>
         <?php
         if ($produtoEditar) {
@@ -88,12 +118,12 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="hidden" name="id" value="<?= $produtoEditar['id'] ?>">
         <?php } ?>
         <label>Nome do Produto:</label>
-        <input type="text" name="nome" value="<?= $produtoEditar['nome'] ?? '' ?>">
+        <input type="text" name="nome" value="<?= htmlspecialchars($produtoEditar['nome'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
         <br><br>
         <label>Preço:</label>
-        <input type="number" name="preco" step="0.01" min="0" required value="<?php $produtoEditar['preco'] ?? '' ?>">
+        <input type="number" name="preco" step="0.01" min="0" required value="<?= htmlspecialchars($produtoEditar['preco'] ?? '') ?>">
         <label>Quantidade:</label>
-        <input type="number" name="quantidade" min="0" required value="<?= $produtoEditar['quantidade'] ?? '' ?>">
+        <input type="number" name="quantidade" min="0" required value="<?= htmlspecialchars($produtoEditar['quantidade'] ?? '') ?>">
         <br><br>
         <?php if ($produtoEditar) { ?>
             <button type="submit" name="atualizar">Atualizar Produto</button>
@@ -122,10 +152,10 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td> <?= $produto["quantidade"] ?> </td>
                 <td>
                     <!-- EDITAR -->
-                    <a href=";db1.php?editar=<?php $produto['id'] ?>">Editar</a>
+                    <a href="db1.php?editar=<?= (int) $produto['id'] ?>">Editar</a>
                     <!-- EXCLUIR -->
                     <form method="POST" action="db1.php" style="display:inline;">
-                        <input type="hidden" name="id" value="<?php $produto['id'] ?>">
+                        <input type="hidden" name="id" value="<?= (int) $produto['id'] ?>">
                         <button type="submit" name="excluir" onclick="return confirm ('Desjea excluir este produto?')">Excluir</button>
                     </form>
                 </td>
