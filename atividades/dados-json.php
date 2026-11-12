@@ -88,7 +88,7 @@ $alunos = json_decode($conteudoJson, true);
 </head>
 <header>
     <div class="logo">
-        <h2>José <span>Oropesa</span></h2>
+        <h2>Sebastian <span>Andrade</span></h2>
     </div>
     <nav>
         <a href="../index.php">Inicio</a>

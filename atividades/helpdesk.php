@@ -52,7 +52,7 @@ $chamados = json_decode($conteudoJson, true);
 
 <header>
     <div class="logo">
-        <h2>José <span>Oropesa</span></h2>
+        <h2>Sebastian <span>Andrade</span></h2>
     </div>
     <nav>
         <a href="../index.php">Inicio</a>
@@ -107,7 +107,7 @@ $chamados = json_decode($conteudoJson, true);
 
     <footer>
         <p>
-            DESENVOLVIDO POR <a href="https://jose755.devlook.xyz">JOSE OROPESA</a>
+            DESENVOLVIDO POR <a href="https://sebastian755.devlook.xyz">Sebastian Andrade</a>
         </p>
         <p>
             HTML + CSS + PHP + JSON
