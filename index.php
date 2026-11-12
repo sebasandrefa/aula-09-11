@@ -6,7 +6,7 @@
     
     <title>Meu Portfolio</title>
 
-    @vite(['resources/css/index.css'])
+    @vite(['resources/css/05-portfolio.css'])
 
 </head>
 <body class="pagina-inicio">
