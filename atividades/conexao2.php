@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$db = 'loja_informatica';
+$db = 'sebastian755';
 $user = 'sebastian755';
 $pass =  '755!@#';
 $charset = 'utf8mb4';
