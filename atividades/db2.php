@@ -92,7 +92,7 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title>Banco loja_informatica</title>
 
-    <link rel="stylesheet" href="../css/loja_informatico.css">
+    <link rel="stylesheet" href="../css/loja_informatica.css">
 </head>
 
 <body>
@@ -149,13 +149,5 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </section>
     </main>
-
-    <footer>
-        <p>
-            Desenvolvido por Sebastián Andrade . 2026
-        </p>
-    </footer>
-
 </body>
-
 </html>
