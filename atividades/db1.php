@@ -1,6 +1,7 @@
 <?php
 //db1.php
 require_once "../conexao.php";
+$erroExclusao = null;
 
 //1-criar tabela
 $sql = "CREATE TABLE IF NOT EXISTS produtos (
@@ -11,12 +12,24 @@ quantidade INT NOT NULL)";
 
 $pdo->exec($sql);
 
-// Apagar todos os produtos quando solicitado pelo formulário.
-if (isset($_POST["excluirTodos"])) {
-    $stmt = $pdo->prepare("DELETE FROM produtos");
-    $stmt->execute();
-    header("Location: db1.php");
-    exit;
+// Excluir um produto ou limpar a lista inteira.
+if (isset($_POST["excluir"]) || isset($_POST["excluirTodos"])) {
+    try {
+        if (isset($_POST["excluirTodos"])) {
+            $stmt = $pdo->prepare("DELETE FROM produtos");
+        } else {
+            $id = (int) $_POST["id"];
+            $stmt = $pdo->prepare("DELETE FROM produtos WHERE id = :id");
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        header("Location: db1.php");
+        exit;
+    } catch (Throwable $e) {
+        error_log($e->getMessage());
+        $erroExclusao = "Não foi possível excluir. Verifique as permissões do banco de dados.";
+    }
 }
 
 //2-cadastrar produto
@@ -41,14 +54,6 @@ if (isset($_POST["atualizar"])) {
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
     $sql = "UPDATE produtos SET nome = '$nome', preco = $preco, quantidade = $quantidade WHERE id = $id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-}
-
-//4-excluir
-if (isset($_POST["excluir"])) {
-    $id = $_POST["id"];
-    $sql = "DELETE FROM produtos WHERE id = $id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 }
@@ -83,6 +88,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <h1>Sistema de Cadastro de produtos</h1>
+    <?php if ($erroExclusao): ?>
+        <p role="alert"><?= htmlspecialchars($erroExclusao, ENT_QUOTES, "UTF-8") ?></p>
+    <?php endif; ?>
     <form method="POST" onsubmit="return confirm('Deseja apagar todos os produtos cadastrados?')">
         <button type="submit" name="excluirTodos">Apagar todos os produtos</button>
     </form>
