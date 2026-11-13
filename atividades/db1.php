@@ -11,6 +11,14 @@ quantidade INT NOT NULL)";
 
 $pdo->exec($sql);
 
+// Apagar todos os produtos quando solicitado pelo formulário.
+if (isset($_POST["excluirTodos"])) {
+    $stmt = $pdo->prepare("DELETE FROM produtos");
+    $stmt->execute();
+    header("Location: db1.php");
+    exit;
+}
+
 //2-cadastrar produto
 if (isset($_POST["cadastrar"])) {
     $nome = $_POST["nome"];
@@ -75,6 +83,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <h1>Sistema de Cadastro de produtos</h1>
+    <form method="POST" onsubmit="return confirm('Deseja apagar todos os produtos cadastrados?')">
+        <button type="submit" name="excluirTodos">Apagar todos os produtos</button>
+    </form>
     <h2>
         <?php
         if ($produtoEditar) {
