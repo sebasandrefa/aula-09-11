@@ -1,7 +1,15 @@
 <?php
 //db1.php
-require_once "../conexao.php";
+require_once __DIR__ . "/../conexao.php";
 $erroExclusao = null;
+$erroBanco = null;
+$produtoEditar = null;
+$produtos = [];
+
+try {
+if (!isset($pdo) || !($pdo instanceof PDO)) {
+    throw new RuntimeException("A conexão com o banco de dados não foi estabelecida.");
+}
 
 //1-criar tabela
 $sql = "CREATE TABLE IF NOT EXISTS produtos (
@@ -38,13 +46,12 @@ if (isset($_POST["cadastrar"])) {
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
 
-    $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES ('$nome', $preco, $quantidade)";
-
-
+    $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES (:nome, :preco, :quantidade)";
     $stmt = $pdo->prepare($sql);
-
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":quantidade", $quantidade);
     $stmt->execute();
-
 }
 
 //3-atualizar produto
@@ -53,8 +60,12 @@ if (isset($_POST["atualizar"])) {
     $nome = $_POST["nome"];
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
-    $sql = "UPDATE produtos SET nome = '$nome', preco = $preco, quantidade = $quantidade WHERE id = $id";
+    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade WHERE id = :id";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":nome", $nome);
+    $stmt->bindParam(":preco", $preco);
+    $stmt->bindParam(":quantidade", $quantidade);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
 }
 
@@ -63,8 +74,9 @@ $produtoEditar = null;
 
 if (isset($_GET["editar"])) {
     $id = $_GET["editar"];
-    $sql = "SELECT * FROM produtos WHERE id = $id";
+    $sql = "SELECT * FROM produtos WHERE id = :id";
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $produtoEditar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -74,6 +86,13 @@ if (isset($_GET["editar"])) {
 $sql = "SELECT * FROM produtos ORDER BY id ASC";
 $stmt = $pdo->query($sql);
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Throwable $e) {
+    error_log($e->getMessage());
+    http_response_code(503);
+    $erroBanco = "Não foi possível concluir a operação no banco de dados.";
+    $produtoEditar = null;
+    $produtos = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +109,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1>Sistema de Cadastro de produtos</h1>
     <?php if ($erroExclusao): ?>
         <p role="alert"><?= htmlspecialchars($erroExclusao, ENT_QUOTES, "UTF-8") ?></p>
+    <?php endif; ?>
+    <?php if ($erroBanco): ?>
+        <p role="alert"><?= htmlspecialchars($erroBanco, ENT_QUOTES, "UTF-8") ?></p>
     <?php endif; ?>
     <form method="POST" onsubmit="return confirm('Deseja apagar todos os produtos cadastrados?')">
         <button type="submit" name="excluirTodos">Apagar todos os produtos</button>
