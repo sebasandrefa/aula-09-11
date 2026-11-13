@@ -1,4 +1,6 @@
 <?php
+ini_set("display_errors", 1);
+error_reporting(E_ALL);
 
 $pdo = new PDO("mysql:host=localhost;charset=utf8mb4", "sebastian755", "755!@#");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
