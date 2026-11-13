@@ -1,18 +1,10 @@
 <?php
 //db1.php
-require_once __DIR__ . "/../conexao.php";
-//1-criar tabela e executar operações
-$erroBanco = null;
-$produtoEditar = null;
-$produtos = [];
-$pdoDisponivel = isset($pdo) && $pdo instanceof PDO;
-if (!$pdoDisponivel) {
-    http_response_code(503);
-    $erroBanco = "Não foi possível conectar ao banco de dados. Confira a configuração da conexão.";
-}
+require_once "../conexao.php";
 
-if ($pdoDisponivel) {
-try {
+echo "debug1";
+
+//1-criar tabela
 $sql = "CREATE TABLE IF NOT EXISTS produtos (
 id INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(100) NOT NULL,
@@ -21,19 +13,27 @@ quantidade INT NOT NULL)";
 
 $pdo->exec($sql);
 
+echo "debug2";
+
 //2-cadastrar produto
 if (isset($_POST["cadastrar"])) {
     $nome = $_POST["nome"];
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
 
-    $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES (:nome, :preco, :quantidade)";
+    echo "debug3";
+
+    $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES ('$nome', $preco, $quantidade)";
+
+    echo "debug4";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":nome", $nome);
-    $stmt->bindParam(":preco", $preco);
-    $stmt->bindParam(":quantidade", $quantidade);
+
+    echo "debug5";
+
     $stmt->execute();
+
+    echo "debug6";
 }
 //3-atualizar produto
 if (isset($_POST["atualizar"])) {
@@ -41,68 +41,62 @@ if (isset($_POST["atualizar"])) {
     $nome = $_POST["nome"];
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
-
-    $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade WHERE id = :id";
-
+    echo "debug7";
+    $sql = "UPDATE produtos SET nome = '$nome', preco = $preco, quantidade = $quantidade WHERE id = $id";
+    echo "debug8";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":nome", $nome);
-    $stmt->bindParam(":preco", $preco);
-    $stmt->bindParam(":quantidade", $quantidade);
-    $stmt->bindParam(":id", $id);
+    echo "debug8";
     $stmt->execute();
 }
-
+echo "debug9";
 //4-excluir
 if (isset($_POST["excluir"])) {
     $id = $_POST["id"];
 
-    $sql = "DELETE FROM produtos WHERE id = :id";
+    $sql = "DELETE FROM produtos WHERE id = $id";
+    echo "debug10";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $id);
+    echo "debug11";
     $stmt->execute();
 }
+echo "debug12";
 
 //5-buscarProdutoParaEdiçao
 $produtoEditar = null;
 
 if (isset($_GET["editar"])) {
     $id = $_GET["editar"];
-    $sql = "SELECT * FROM produtos WHERE id = :id";
+    $sql = "SELECT * FROM produtos WHERE id = $id";
+    echo "debug13";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $id);
+    echo "debug14";
     $stmt->execute();
+    echo "debug15";
     $produtoEditar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
+echo "debug16";
 //6-listar todos os produtos
 
 $sql = "SELECT * FROM produtos ORDER BY id ASC";
+echo "debug17";
 $stmt = $pdo->query($sql);
+echo "debug18";
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (Throwable $e) {
-    http_response_code(503);
-    $erroBanco = "Não foi possível carregar o cadastro. Confira se o banco possui a tabela e as permissões necessárias.";
-    $produtoEditar = null;
-    $produtos = [];
-}
-}
+echo "debug19";
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de produtos</title>
-    <link rel="stylesheet" href="../css/db1.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/06-db1.css">
 </head>
 
 <body>
     <h1>Sistema de Cadastro de produtos</h1>
-    <?php if ($erroBanco): ?>
-        <p role="alert"><?= htmlspecialchars($erroBanco, ENT_QUOTES, "UTF-8") ?></p>
-    <?php endif; ?>
     <h2>
         <?php
         if ($produtoEditar) {
@@ -118,12 +112,12 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="hidden" name="id" value="<?= $produtoEditar['id'] ?>">
         <?php } ?>
         <label>Nome do Produto:</label>
-        <input type="text" name="nome" value="<?= htmlspecialchars($produtoEditar['nome'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+        <input type="text" name="nome" value="<?= $produtoEditar['nome'] ?? '' ?>">
         <br><br>
         <label>Preço:</label>
-        <input type="number" name="preco" step="0.01" min="0" required value="<?= htmlspecialchars($produtoEditar['preco'] ?? '') ?>">
+        <input type="number" name="preco" step="0.01" min="0" required value="<?php $produtoEditar['preco'] ?? '' ?>">
         <label>Quantidade:</label>
-        <input type="number" name="quantidade" min="0" required value="<?= htmlspecialchars($produtoEditar['quantidade'] ?? '') ?>">
+        <input type="number" name="quantidade" min="0" required value="<?= $produtoEditar['quantidade'] ?? '' ?>">
         <br><br>
         <?php if ($produtoEditar) { ?>
             <button type="submit" name="atualizar">Atualizar Produto</button>
@@ -152,10 +146,10 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td> <?= $produto["quantidade"] ?> </td>
                 <td>
                     <!-- EDITAR -->
-                    <a href="db1.php?editar=<?= (int) $produto['id'] ?>">Editar</a>
+                    <a href="db1.php?editar=<?= $produto['id'] ?>">Editar</a>
                     <!-- EXCLUIR -->
                     <form method="POST" action="db1.php" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= (int) $produto['id'] ?>">
+                        <input type="hidden" name="id" value="<?= $produto['id'] ?>">
                         <button type="submit" name="excluir" onclick="return confirm ('Desjea excluir este produto?')">Excluir</button>
                     </form>
                 </td>
