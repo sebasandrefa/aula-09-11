@@ -21,17 +21,12 @@ quantidade INT NOT NULL)";
 
 $pdo->exec($sql);
 
-// Excluir um produto ou limpar a lista inteira.
-if (isset($_POST["excluir"]) || isset($_POST["excluirTodos"])) {
+// Excluir um produto.
+if (isset($_POST["excluir"])) {
     try {
-        if (isset($_POST["excluirTodos"])) {
-            $stmt = $pdo->prepare("DELETE FROM produtos");
-        } else {
-            $id = (int) $_POST["id"];
-            $stmt = $pdo->prepare("DELETE FROM produtos WHERE id = :id");
-            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        }
-
+        $id = (int) $_POST["id"];
+        $stmt = $pdo->prepare("DELETE FROM produtos WHERE id = :id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         header("Location: db1.php");
         exit;
@@ -114,9 +109,6 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php if ($erroBanco): ?>
         <p role="alert"><?= htmlspecialchars($erroBanco, ENT_QUOTES, "UTF-8") ?></p>
     <?php endif; ?>
-    <form method="POST" onsubmit="return confirm('Deseja apagar todos os produtos cadastrados?')">
-        <button type="submit" name="excluirTodos">Apagar todos os produtos</button>
-    </form>
     <h2>
         <?php
         if ($produtoEditar) {
