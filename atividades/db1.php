@@ -25,26 +25,22 @@ if (isset($_POST["cadastrar"])) {
     $stmt->execute();
 
 }
+
 //3-atualizar produto
 if (isset($_POST["atualizar"])) {
     $id = $_POST["id"];
     $nome = $_POST["nome"];
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
-    echo "debug7";
     $sql = "UPDATE produtos SET nome = '$nome', preco = $preco, quantidade = $quantidade WHERE id = $id";
-    echo "debug8";
     $stmt = $pdo->prepare($sql);
-    echo "debug8";
     $stmt->execute();
 }
 
 //4-excluir
 if (isset($_POST["excluir"])) {
     $id = $_POST["id"];
-
     $sql = "DELETE FROM produtos WHERE id = $id";
-    echo "debug10";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 }
@@ -59,7 +55,7 @@ if (isset($_GET["editar"])) {
     $stmt->execute();
     $produtoEditar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-echo "debug16";
+
 //6-listar todos os produtos
 
 $sql = "SELECT * FROM produtos ORDER BY id ASC";
