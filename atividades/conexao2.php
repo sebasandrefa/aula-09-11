@@ -1,6 +1,7 @@
 <?php
 
-require_once 'conexao2.php';
+// Conexao com o banco de dados usando PDO
+// No XAMPP o usuario padrao e "root" e a senha e vazia
 
 $host = 'localhost';
 $banco = 'loja_informatica';
