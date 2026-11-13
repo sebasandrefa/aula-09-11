@@ -1,12 +1,13 @@
 <?php
 //db1.php
-require_once __DIR__ . "/../conexao.php";
 $erroExclusao = null;
 $erroBanco = null;
 $produtoEditar = null;
 $produtos = [];
 
 try {
+require_once __DIR__ . "/../conexao.php";
+
 if (!isset($pdo) || !($pdo instanceof PDO)) {
     throw new RuntimeException("A conexão com o banco de dados não foi estabelecida.");
 }
