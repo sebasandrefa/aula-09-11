@@ -2,8 +2,6 @@
 //db1.php
 require_once "../conexao.php";
 
-echo "debug1";
-
 //1-criar tabela
 $sql = "CREATE TABLE IF NOT EXISTS produtos (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -13,27 +11,19 @@ quantidade INT NOT NULL)";
 
 $pdo->exec($sql);
 
-echo "debug2";
-
 //2-cadastrar produto
 if (isset($_POST["cadastrar"])) {
     $nome = $_POST["nome"];
     $preco = $_POST["preco"];
     $quantidade = $_POST["quantidade"];
 
-    echo "debug3";
-
     $sql = "INSERT INTO produtos (nome, preco, quantidade) VALUES ('$nome', $preco, $quantidade)";
 
-    echo "debug4";
 
     $stmt = $pdo->prepare($sql);
 
-    echo "debug5";
-
     $stmt->execute();
 
-    echo "debug6";
 }
 //3-atualizar produto
 if (isset($_POST["atualizar"])) {
@@ -48,7 +38,7 @@ if (isset($_POST["atualizar"])) {
     echo "debug8";
     $stmt->execute();
 }
-echo "debug9";
+
 //4-excluir
 if (isset($_POST["excluir"])) {
     $id = $_POST["id"];
@@ -56,10 +46,8 @@ if (isset($_POST["excluir"])) {
     $sql = "DELETE FROM produtos WHERE id = $id";
     echo "debug10";
     $stmt = $pdo->prepare($sql);
-    echo "debug11";
     $stmt->execute();
 }
-echo "debug12";
 
 //5-buscarProdutoParaEdiçao
 $produtoEditar = null;
@@ -67,22 +55,16 @@ $produtoEditar = null;
 if (isset($_GET["editar"])) {
     $id = $_GET["editar"];
     $sql = "SELECT * FROM produtos WHERE id = $id";
-    echo "debug13";
     $stmt = $pdo->prepare($sql);
-    echo "debug14";
     $stmt->execute();
-    echo "debug15";
     $produtoEditar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 echo "debug16";
 //6-listar todos os produtos
 
 $sql = "SELECT * FROM produtos ORDER BY id ASC";
-echo "debug17";
 $stmt = $pdo->query($sql);
-echo "debug18";
 $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-echo "debug19";
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +74,7 @@ echo "debug19";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/06-db1.css">
+    <link rel="stylesheet" href="../css/db1.css">
 </head>
 
 <body>
