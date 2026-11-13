@@ -152,6 +152,13 @@
                     <div class="tecnologias"><span>PHP</span><span>JSON</span></div>
                     <span class="link-projeto projeto-indisponivel">Script de demonstração</span>
                 </article>
+                <article class="projeto-card">
+                    <div class="projeto-numero">08</div>
+                    <h3>Loja de Informática</h3>
+                    <p>Sistema de controle de estoque e vendas com cadastro de produtos, registro de vendas e relatórios.</p>
+                    <div class="tecnologias"><span>PHP</span><span>MySQL</span><span>PDO</span><span>HTML</span><span>CSS</span></div>
+                    <a href="atividades/loja_informatica.php" class="link-projeto">Ver projeto →</a>
+                </article>
             </div>
         </section>
         <section id="contato" class="secao secao-destaque">
