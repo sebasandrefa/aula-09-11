@@ -436,13 +436,5 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </table>
         </section>
     </main>
-
-    <footer>
-        <p>
-            Desenvolvido por Sebastián Andrade . 2026
-        </p>
-    </footer>
-
 </body>
-
 </html>
