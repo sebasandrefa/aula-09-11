@@ -188,7 +188,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title>Loja de Informática</title>
 
-    <link rel="stylesheet" href="../css/loja_informatico.css">
+    <link rel="stylesheet" href="../css/loja_informatica.css">
 </head>
 
 <body>
