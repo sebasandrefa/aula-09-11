@@ -158,6 +158,8 @@
                     <p>Sistema de controle de estoque e vendas com cadastro de produtos, registro de vendas e relatórios.</p>
                     <div class="tecnologias"><span>PHP</span><span>MySQL</span><span>PDO</span><span>HTML</span><span>CSS</span></div>
                     <a href="atividades/loja_informatica.php" class="link-projeto">Ver projeto →</a>
+                    <br>
+                    <a href="atividades/db2.php" class="link-projeto">Ver banco de dados →</a>
                 </article>
             </div>
         </section>
