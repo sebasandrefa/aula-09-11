@@ -198,6 +198,7 @@ $ranking = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <ul class="menu">
                 <li><a href="../index.php">Portfólio</a></li>
+                <li><a href="db2.php">Banco</a></li>
                 <li><a href="#resumo">Resumo</a></li>
                 <li><a href="#cadastro">Cadastro</a></li>
                 <li><a href="#produtos">Produtos</a></li>
