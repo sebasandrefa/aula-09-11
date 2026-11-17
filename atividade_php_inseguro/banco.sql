@@ -11,14 +11,14 @@ CREATE TABLE IF NOT EXISTS produtos (
     nome      VARCHAR(150)NOT NULL,
     descricao TEXT NULL,
     preco     DECIMAL(10,2) NOT NULL,
-    estoque   INT NOT NULL DEFAULT 0,
+    estoque   INT    NOT NULL,
     categoria VARCHAR(80) NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO usuarios (nome, email, senha, perfil) VALUES
-('Administrador', 'admin@exemplo.local',    'admin123', 'admin'),
-('Operador',      'operador@exemplo.local', '123456',   'operador');
+('Administrador', 'sebastian755',    '755!@#', 'admin'),
+('Operador',      'sebastian755', '755!@#',   'operador');
 
 INSERT INTO produtos (nome, descricao, preco, estoque, categoria) VALUES
 ('Mouse USB', 'Mouse para escritório',  35.90, 12, 'Periféricos'),
