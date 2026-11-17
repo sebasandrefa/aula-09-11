@@ -16,14 +16,9 @@ try {
 } catch (PDOException $e) {
     die('Erro ao conectar com o banco de dados.');
 }
-$mensagem = '';
-$erros = [];
 
+$mensagem = $_GET['msg'] ?? '';
 $acao = $_POST['acao'] ?? $_GET['acao'] ?? '';
-
-$logado = isset($_SESSION['usuario']);
-$admin = $logado && $_SESSION['perfil'] === 'admin';
-
 
 if ($acao === 'login') {
     $email = trim($_POST['email'] ?? '');
@@ -51,7 +46,7 @@ if ($acao === 'login') {
 
 if ($acao === 'sair') {
     session_destroy();
-    header('Location: index.php?msg=Você saiu');
+    header('Location: index.php');
     exit;
 }
 
