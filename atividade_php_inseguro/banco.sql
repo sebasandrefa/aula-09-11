@@ -8,11 +8,11 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 CREATE TABLE IF NOT EXISTS produtos (
     id        INT AUTO_INCREMENT PRIMARY KEY,
-    nome      VARCHAR(150),
-    descricao TEXT,
-    preco     DECIMAL(10,2),
-    estoque   INT,
-    categoria VARCHAR(80),
+    nome      VARCHAR(150)NOT NULL,
+    descricao TEXT NULL,
+    preco     DECIMAL(10,2) NOT NULL,
+    estoque   INT NOT NULL DEFAULT 0,
+    categoria VARCHAR(80) NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
