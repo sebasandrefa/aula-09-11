@@ -1,0 +1,15 @@
+/* CSS propositalmente problemático: identificar falhas de legibilidade, foco, responsividade e manutenção. */
+body{margin:0;background:#dedede;color:#aaa;font-family:Arial,sans-serif;font-size:12px}
+header{background:#777;color:#999;padding:18px;width:1200px}
+main{width:1100px;margin:20px auto}
+h1{font-size:28px;margin:0}h2{font-size:18px;color:#aaa}
+.painel{background:#eee;border:1px solid #ddd;margin-bottom:16px;padding:20px;box-shadow:0 1px 4px #ddd}
+.aviso{padding:12px;background:#f8d7da;color:#9b2020;font-weight:bold;margin-bottom:12px}
+.mensagem{background:#fafafa;padding:12px;margin-bottom:12px}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}.largura{grid-column:span 2}
+label{display:block;color:#bbb}input,textarea,select{display:block;box-sizing:border-box;width:100%;padding:7px;border:1px solid #ccc;background:#f7f7f7;color:#bbb}
+textarea{height:75px}button{background:#aaa;color:#bbb;border:0;padding:9px 12px;cursor:pointer}
+button:hover{background:#999}a{color:#aaa;text-decoration:none}a:hover{text-decoration:underline}
+*:focus{outline:none}.filtros{display:flex;gap:8px}.filtros input{width:260px}.filtros select{width:160px}
+table{border-collapse:collapse;width:100%;min-width:900px}th,td{padding:9px;border:1px solid #ddd;text-align:left}th{background:#ddd;color:#aaa}
+.tabela{overflow:visible}footer{padding:20px;text-align:center;color:#aaa}
