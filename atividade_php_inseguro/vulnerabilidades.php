@@ -28,16 +28,17 @@ if ($acao === 'login') {
         $mensagem = 'Preencha o e-mail e a senha.';
     } else {
 
-        $stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
-        $stmt->execute([$email]);
-        $encontrado = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM usuarios WHERE email = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $encontrado = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($encontrado && password_verify($password, $encontrado['senha'])) {
+
             session_regenerate_id(true); 
             $_SESSION['usuario'] = $encontrado['nome'];
             $_SESSION['perfil'] = $encontrado['perfil'];
-            header('Location: index.php');
-            exit;
+            $mensagem = 'Bem-vindo, ' . $encontrado['nome']; 
         } else {
             $mensagem = 'E-mail ou senha inválidos.';
         }
@@ -46,7 +47,7 @@ if ($acao === 'login') {
 
 if ($acao === 'sair') {
     session_destroy();
-    header('Location: index.php');
+    header('Location: index.php?msg=Você saiu');
     exit;
 }
 
