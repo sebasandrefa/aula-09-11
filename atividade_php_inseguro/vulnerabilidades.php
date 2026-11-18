@@ -219,21 +219,25 @@ $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
             <tbody>
                 <?php foreach ($produtos as $produto): ?>
             <tr>
-            <td><?= $produto['id'] ?></td>
-            <td><?= $produto['nome'] ?></td>
-            <td><?= $produto['descricao'] ?></td>
-            <td><?= $produto['categoria'] ?></td>
-            <td>R$ <?= $produto['preco'] ?></td>
-            <td><?= $produto['estoque'] ?></td>
+                <td><?= htmlspecialchars($produto['id']) ?></td>
+                <td><?= htmlspecialchars($produto['nome']) ?></td>
+                <td><?= htmlspecialchars($produto['descricao'] ?? '') ?></td>
+                <td><?= htmlspecialchars($produto['categoria']) ?></td>
+                <td>R$ <?= htmlspecialchars($produto['preco']) ?></td>
+                <td><?= htmlspecialchars($produto['estoque']) ?></td>
             <td>
-                <a href="?editar=<?= $produto['id'] ?>">Editar</a>
-                <a href="?acao=excluir&id=<?= $produto['id'] ?>">Excluir</a>
+                <a href="?editar=<?= htmlspecialchars($produto['id']) ?>">Editar</a>
+                <form method="post" class="form-excluir">
+                    <input type="hidden" name="acao" value="excluir">
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id']) ?>">
+                <button class="botao-excluir">Excluir</button>
+                </form>
             </td>
-                </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
+            </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
     </section>
 
     <section class="painel">
