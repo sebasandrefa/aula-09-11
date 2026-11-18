@@ -87,9 +87,15 @@ if ($acao === 'atualizar') {
     $mensagem = 'Produto atualizado.';
 }
 
-if ($acao === 'excluir') {
-    $id = $_GET['id'] ?? '';
-    $pdo->exec("DELETE FROM produtos WHERE id=$id");
+if ($acao === 'excluir' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (($_SESSION['perfil'] ?? '') !== 'admin') {
+        die('Acesso negado. Apenas o administrador pode excluir.');
+    }
+
+    $id = $_POST['id'] ?? '';
+    $stmt = $pdo->prepare("DELETE FROM produtos WHERE id=?");
+    $stmt->execute([$id]);
     $mensagem = 'Produto excluído.';
 }
 
@@ -97,10 +103,12 @@ $busca = $_GET['busca'] ?? '';
 $categoriaFiltro = $_GET['categoria'] ?? '';
 $ordem = $_GET['ordem'] ?? 'id';
 
-$sqlLista = "SELECT * FROM produtos WHERE (nome LIKE '%$busca%' OR descricao LIKE '%$busca%')";
+$sqlLista = "SELECT * FROM produtos WHERE (nome LIKE ? OR descricao LIKE ?)";
+$parametros = ["%$busca%", "%$busca%"];
 
 if ($categoriaFiltro !== '') {
-    $sqlLista .= " AND categoria = '$categoriaFiltro'";
+    $sqlLista .= " AND categoria = ?";
+    $parametros[] = $categoriaFiltro;
 }
 
 $sqlLista .= " ORDER BY $ordem";
