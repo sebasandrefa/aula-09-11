@@ -243,7 +243,7 @@ $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
     <section class="painel">
         <h2>Observações da loja</h2>
         <p>Esta página foi criada para a turma identificar problemas reais de desenvolvimento web.</p>
-        <p>Mensagem de campanha: <?= $_GET['campanha'] ?? 'Nenhuma campanha ativa' ?></p>
+        <p>Mensagem de campanha: <?= htmlspecialchars($_GET['campanha'] ?? 'Nenhuma campanha ativa') ?></p>
     </section>
 </main>
 
