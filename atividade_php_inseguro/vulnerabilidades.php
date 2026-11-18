@@ -119,7 +119,9 @@ $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $editar = null;
 
 if (isset($_GET['editar'])) {
-    $editar = $pdo->query('SELECT * FROM produtos WHERE id=' . $_GET['editar'])->fetch(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare('SELECT * FROM produtos WHERE id=?');
+    $stmt->execute([$_GET['editar']]);
+    $editar = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
@@ -143,20 +145,20 @@ $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
     <div class="aviso">LABORATÓRIO INSEGURO — SOMENTE LOCALHOST</div>
 
     <?php if ($mensagem !== ''): ?>
-        <div class="mensagem"><?= $mensagem ?></div>
+        <div class="mensagem"><?= htmlspecialchars($mensagem) ?></div>
     <?php endif; ?>
 
     <section class="painel">
         <h2>Acesso ao sistema</h2>
 
         <?php if (isset($_SESSION['usuario'])): ?>
-            <p>Usuário: <?= $_SESSION['usuario'] ?> | Perfil: <?= $_SESSION['perfil'] ?></p>
+            <p>Usuário: <?= htmlspecialchars($_SESSION['usuario']) ?> | Perfil: <?= htmlspecialchars($_SESSION['perfil']) ?></p>
             <a href="?acao=sair">Sair</a>
         <?php else: ?>
             <form method="post">
                 <input type="hidden" name="acao" value="login">
-                <label>E-mail <input name="email" placeholder="email@exemplo.local"></label>
-                <label>Senha <input name="senha" type="text" placeholder="Senha"></label>
+                <label>E-mail <input name="email" type="email" required placeholder="email@exemplo.local"></label>
+                <label>Senha <input name="senha" type="password" required placeholder="Senha"></label>
                 <button>Entrar</button>
             </form>
         <?php endif; ?>
@@ -172,11 +174,11 @@ $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
                 <input type="hidden" name="id" value="<?= $editar['id'] ?>">
             <?php endif; ?>
 
-            <label>Nome <input name="nome" value="<?= $editar['nome'] ?? '' ?>"></label>
-            <label>Categoria <input name="categoria" value="<?= $editar['categoria'] ?? '' ?>"></label>
-            <label>Preço (R$) <input name="preco" value="<?= $editar['preco'] ?? '' ?>"></label>
-            <label>Estoque <input name="estoque" value="<?= $editar['estoque'] ?? '' ?>"></label>
-            <label class="largura">Descrição <textarea name="descricao"><?= $editar['descricao'] ?? '' ?></textarea></label>
+            <label>Nome <input name="nome" required maxlength="150" value="<?= htmlspecialchars($editar['nome'] ?? '') ?>"></label>
+            <label>Categoria <input name="categoria" required maxlength="80" value="<?= htmlspecialchars($editar['categoria'] ?? '') ?>"></label>
+            <label>Preço (R$) <input name="preco" type="number" required min="0.01" step="0.01" value="<?= htmlspecialchars($editar['preco'] ?? '') ?>"></label>
+            <label>Estoque <input name="estoque" type="number" required min="0" step="1" value="<?= htmlspecialchars($editar['estoque'] ?? '') ?>"></label>
+            <label class="largura">Descrição <textarea name="descricao"><?= htmlspecialchars($editar['descricao'] ?? '') ?></textarea></label>
 
             <div>
                 <button><?= $editar ? 'Salvar alterações' : 'Cadastrar' ?></button>
@@ -189,16 +191,17 @@ $total = $pdo->query('SELECT COUNT(*) FROM produtos')->fetchColumn();
         <h2>Produtos cadastrados (<?= $total ?>)</h2>
 
         <form method="get" class="filtros">
-            <input name="busca" placeholder="Buscar nome ou descrição" value="<?= $busca ?>">
-            <input name="categoria" placeholder="Filtrar categoria" value="<?= $categoriaFiltro ?>">
+            <input name="busca" placeholder="Buscar nome ou descrição" value="<?= htmlspecialchars($busca) ?>">
+            <input name="categoria" placeholder="Filtrar categoria" value="<?= htmlspecialchars($categoriaFiltro) ?>">
             <select name="ordem">
             <option value="id">Código</option>
             <option value="nome">Nome</option>
             <option value="preco">Preço</option>
-            <option value="<?= $ordem ?>" selected>Ordenação atual</option>
+            <option value="<?= htmlspecialchars($ordem) ?>" selected>Ordenação atual</option>
             </select>
             <button>Pesquisar</button>
         </form>
+
 
         <div class="tabela">
         <table>
