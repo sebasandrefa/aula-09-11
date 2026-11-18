@@ -104,11 +104,12 @@ a:hover {
 }
 
 *:focus {
-    outline: none;
+    outline: 3px solid #f59e0b;
 }
 
 .filtros {
     display: flex;
+    flex-warp: wrap;
     gap: 8px;
 }
 
