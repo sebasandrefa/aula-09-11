@@ -135,15 +135,27 @@ th, td {
 
 th {
     background: #ddd;
-    color: #aaa;
+    color: #222;
 }
 
 .tabela {
-    overflow: visible;
+    overflow-x: auto;
 }
 
 footer {
     padding: 20px;
     text-align: center;
-    color: #aaa;
+    color: #444;
+}
+
+.form-excluir {
+    display: inline;
+}
+
+.botao-excluir {
+    background: #b91c1c;
+}
+
+.botao-excluir:hover {
+    background: #7f1d1d;
 }
