@@ -112,7 +112,9 @@ if ($categoriaFiltro !== '') {
 }
 
 $sqlLista .= " ORDER BY $ordem";
-$produtos = $pdo->query($sqlLista)->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare($sqlLista);
+$stmt->execute($parametros);
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $editar = null;
 
