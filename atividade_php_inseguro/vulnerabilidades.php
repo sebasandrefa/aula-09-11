@@ -52,18 +52,28 @@ if ($acao === 'sair') {
 }
 
 if ($acao === 'cadastrar') {
+
+     if (!isset($_SESSION['usuario'])) {
+        die('Acesso negado. Faça login.');
+    }
+
     $nome = $_POST['nome'] ?? '';
     $descricao = $_POST['descricao'] ?? '';
     $preco = $_POST['preco'] ?? '';
     $estoque = $_POST['estoque'] ?? '';
     $categoria = $_POST['categoria'] ?? '';
 
-    $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, categoria) VALUES ('$nome', '$descricao', '$preco', '$estoque', '$categoria')";
-    $pdo->exec($sql);
+    $sql = "INSERT INTO produtos (nome, descricao, preco, estoque, categoria) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nome, $descricao, $preco, $estoque, $categoria]);
     $mensagem = "Produto $nome cadastrado!";
 }
 
 if ($acao === 'atualizar') {
+    if (!isset($_SESSION['usuario'])) {
+        die('Acesso negado. Faça login.');
+    }
+
     $id = $_POST['id'] ?? '';
     $nome = $_POST['nome'] ?? '';
     $descricao = $_POST['descricao'] ?? '';
@@ -71,8 +81,9 @@ if ($acao === 'atualizar') {
     $estoque = $_POST['estoque'] ?? '';
     $categoria = $_POST['categoria'] ?? '';
 
-    $sql = "UPDATE produtos SET nome='$nome', descricao='$descricao', preco='$preco', estoque='$estoque', categoria='$categoria' WHERE id=$id";
-    $pdo->exec($sql);
+    $sql = "UPDATE produtos SET nome=?, descricao=?, preco=?, estoque=?, categoria=? WHERE id=?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$nome, $descricao, $preco, $estoque, $categoria, $id]);
     $mensagem = 'Produto atualizado.';
 }
 
