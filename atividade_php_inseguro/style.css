@@ -3,21 +3,21 @@
 body {
     margin: 0;
     background: #dedede;
-    color: #aaa;
+    color: #222;
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 header {
-    background: #777;
-    color: #999;
+    background: #333;
+    color: #fff;
     padding: 18px;
-    width: 1200px;
 }
 
 main {
-    width: 1100px;
+    max-width: 1100px;
     margin: 20px auto;
+    padding: 0 10px;
 }
 
 h1 {
@@ -27,7 +27,7 @@ h1 {
 
 h2 {
     font-size: 18px;
-    color: #aaa;
+    color: #222;
 }
 
 .painel {
@@ -64,7 +64,7 @@ h2 {
 
 label {
     display: block;
-    color: #bbb;
+    color: #222;
 }
 
 input, textarea, select {
@@ -72,9 +72,10 @@ input, textarea, select {
     box-sizing: border-box;
     width: 100%;
     padding: 7px;
-    border: 1px solid #ccc;
+    border: 1px solid #767676;
     background: #f7f7f7;
-    color: #bbb;
+    color: #222;
+    font-size: 16px;
 }
 
 textarea {
@@ -82,20 +83,20 @@ textarea {
 }
 
 button {
-    background: #aaa;
-    color: #bbb;
+    background: #333;
+    color: #fff;
     border: 0;
     padding: 9px 12px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #999;
+    background: #000;
 }
 
 a {
-    color: #aaa;
-    text-decoration: none;
+    color: #1d4ed8;
+    text-decoration: underline;
 }
 
 a:hover {
